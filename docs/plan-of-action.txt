@@ -1,0 +1,16 @@
+Backgrounds
+	- company grounds at Bronkhorst
+Problem definition
+	- Spark the interest of children aged 8-10 in the company, keep them entertained and interested by the activities provided by the product
+	- help them explore the company, discover new things through the means of puzzles
+Project result
+	- to satisfy costumer, deliver a quality experience through an interactive game for children
+	- device entertains children, teaches them about the company and it's environment while keeping the engaged
+Project activities and prodcuts to be delivered
+	- user/graphical interface first
+	- complete interactive cube, functions with all beacons
+Project organization
+	- Everybody participates and gets to show their specialty
+	- We work together by discussing tasks and ideas, agreeing on who can do what and by when; asking for help as needed
+Planning
+	

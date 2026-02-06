@@ -1,0 +1,24 @@
+reverse geocache puzzle
+	company tour experience
+	5 fixed locations with little assignements
+	each room has a puzzle for the kids -> all connected to box -> they get parts, then assemble valve
+
+	assignement
+		-design robot box
+		-5 locations of company - more intermediate beacons allowed
+			beacon pre-placed in rooms, box has to react to them
+			beacons are hm-10 modules, will be used
+		-get creative !
+		-box will open in the end ~1 hour
+		-(maybe) language modes
+
+younger guy for embedded advice, Hugo and glasses guy are costumers
+the children testing it are 8-10
+powered by powerbank
+each beacon has a puzzle
+needs an admin mode
+needs logs
+50 euro budget
+user manual for costumers
+
+admin mode has to be external app

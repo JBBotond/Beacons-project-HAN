@@ -1,0 +1,16 @@
+when do we meet?
+	tuesday for discussion, friday for work
+how do we meet?
+	in person, teams
+how do you divide tasks?
+	bauke - docs, 3d model
+	boti - programming
+	daniel - laTex
+	biaggio - hardware
+Divide and rotate roles
+	rotate every week	
+Responsability of project lead, secretary, chairman
+	lead - 		coordinate efforts, keep track of progress
+	secretary -	keep track of changes, workflow, documents
+	chairman -	lead meetings, communicate with costumers
+Cool name

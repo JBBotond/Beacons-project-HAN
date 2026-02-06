@@ -23,8 +23,8 @@ meetings on Tuesday working on Friday (and other days)
 
 **task deviation and specialties**
 	bauke: 3d modelling, translations and documentation
-	boti: programming
-	daniel: tex?
+	boti: programming, planning
+	danyil: tex?
 	biaggio: hardware
 **role rotation**
 weekly rotation

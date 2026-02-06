@@ -21,8 +21,8 @@ there are 4 members in our project group; Biaggio, Boti, Danyil and Bauke
 we have distributed loose roles according to our strengths and weaknesses tough these are not set in stone.
 
 Biaggio: Hardware
-Boti: Programming
-Daniel: Programming and documentation makeup
+Boti: Programming, planning
+Danyil: Programming and documentation makeup
 Bauke:  Documentation and 3d modelling
 
 as for the general flow of the project we regularly have meetings to discuss ideas for the project and how to implement each part. 

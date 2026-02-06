@@ -1,0 +1,2 @@
+1) [A Bluetooth Low Energy Indoor Positioning System with Channel Diversity, Weighted Trilateration and Kalman Filtering](https://pmc.ncbi.nlm.nih.gov/articles/PMC5750706/pdf/sensors-17-02927.pdf)
+2) [BLE Indoor Positioning System Using RSSI-based Trilateration](https://isyou.info/jowua/papers/jowua-v11n3-3.pdf)

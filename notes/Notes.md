@@ -1,3 +1,8 @@
+NXP MCXA153 supports:
+- supply voltage: 1,71 - 3,6 V
+- Output high current total: 100 mA
+- Power consumption max: 8,14 mA
+
 Adding iBeacon support to your app involves detecting beacons in two different stages:
 
     -Use region monitoring to detect the presence of an iBeacon.

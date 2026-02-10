@@ -8,3 +8,4 @@ The box remains locked by a stepper motor and 3d printed parts until all ibeacon
 | Normal/Game mode                                                        | Admin mode                                                                    | Testing mode                       |
 | ----------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ---------------------------------- |
 | Default mode, let's the game play with a set of rules set in admin mode | Accessible wirelessly, can change game settings (such as reordering ibeacons) | Optional - implemented if required |
+A hm-10 module will be used alongside the NXP microcontroller for wireless communication. A connection must be made between the UART ports of the BLE module and microcontroller.

@@ -19,13 +19,16 @@ void setup() {
 }
 
 void loop() {
-  // step one revolution in one direction:
-  Serial.println("clockwise");
-  myStepper.step(stepsPerRevolution);
-  delay(1000);
+  if(Serial.available()) {
+    char newRead = Serial.read();
+    if(newRead == 'L') {
+      Serial.println("Locking, clockwise");
+      myStepper.step(stepsPerRevolution);
+    }
+    else if(newRead == 'U') {
+      Serial.println("counterclockwise");
+      myStepper.step(-stepsPerRevolution);
+    }
+  }
 
-  // step one revolution in the other direction:
-  Serial.println("counterclockwise");
-  myStepper.step(-stepsPerRevolution);
-  delay(1000);
 }

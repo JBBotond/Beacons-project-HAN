@@ -38,3 +38,40 @@ Both are unsigned integers (usually 0–65535) that sit under a shared UUID, whi
 ## LCD Display
 
 * https://www.nxp.com/design/design-center/development-boards-and-designs/LCD-PAR-S035
+
+## FRDM-MCXA153
+### CMSIS naming convention
+* CMSIS defines strict naming conventions for Cortex-M peripherals, registers, interrupts, and access types to ensure portability across vendors like NXP
+###### Core Naming Rules
+- **Registers**: UPPERCASE (e.g., `SysTick->CTRL`, `SCB->SHPR3`).
+- **Functions**: CamelCase (e.g., `NVIC_SetPriority`, `CLOCK_GetFreq`).​
+- **Structs**: `<Device>_TypeDef` (e.g., `SysTick_Type`, `UART_TypeDef`).​
+- **Pointers**: `<Device> + postfix` (e.g., `LPUART0`, `LPUART1`).
+###### Peripheral Access Qualifiers
+
+CMSIS uses type qualifiers for register permissions in structs:
+
+| Qualifier | Meaning          | Example Use Case                                                                                               |
+| --------- | ---------------- | -------------------------------------------------------------------------------------------------------------- |
+| `__IM`    | Read-only        | Status/flag registers                                                                                          |
+| `__OM`    | Write-only       | Command/control registers                                                                                      |
+| `__IOM`   | Read/Write       | Config/data registers                                                                                          |
+| `__I`     | Read-only scalar | Constants[arm-software.github](https://arm-software.github.io/CMSIS_6/latest/Core/group__peripheral__gr.html)​ |
+###### Memory Map Overview
+| Region           | Address Range           | Purpose                                                                                         |
+| ---------------- | ----------------------- | ----------------------------------------------------------------------------------------------- |
+| Code Flash       | 0x0000_0000–0x0001_FFFF | Up to 128 KB program storage (ECC-protected)                                                    |
+| SRAM X0          | 0x2000_0000–0x2000_7FFF | 32 KB data RAM (8 KB ECC)                                                                       |
+| Core Peripherals | 0xE000_E000–0xE000_EFFF | SysTick, NVIC, SCB (CMSIS-Core) [arm-software.github](https://arm-software.github.io/CMSIS_5/)​ |
+| AHB Peripherals  | 0x4000_0000–0x5FFF_FFFF | Clocks, GPIO, DMA, timers                                                                       |
+| APB Peripherals  | 0x4000_0000+            | UARTs, SPIs, etc. (specific bases below)                                                        |
+###### Key Peripheral Base Addresses (MCXA153)
+
+| Peripheral  | Base Address | Example Access                                                        |
+| ----------- | ------------ | --------------------------------------------------------------------- |
+| SysTick     | 0xE000_0E10  | `SysTick->LOAD = 0xBB80;`                                             |
+| GPIO0       | 0x400A_0000  | `GPIO0->PCR[0] = 0x100;`                                              |
+| LPUART0     | 0x4003_4000  | `LPUART0->CTRL                                                        |
+| FlexPWM0    | 0x4041_8000  | PWM for motor control                                                 |
+| ADC0        | 0x4008_0000  | `ADC0->CMD[0] = 0x80;`                                                |
+| CLOCK (SCG) | 0x400B_0000  | Clock config https://www.nxp.com/docs/en/data-sheet/MCXAP64M96FS3.pdf |

@@ -119,3 +119,12 @@ Next Date:
 * Skills I used this week: [Write here] 
 * Skills I need to improve: [Write here] 
 -----------------
+
+
+#### Task 2: Setup template dir for armgcc toolchain
+Status: 
+- [x] Completed
+- [ ] In Progress
+- [ ] Blocked 
+
+Time Spent: 2 hour

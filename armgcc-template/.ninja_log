@@ -1,0 +1,15 @@
+# ninja log v7
+5	59	1770993653620791004	CMakeFiles/template.elf.dir/components/misc_utilities/fsl_memcpy.S.obj	3f5b223b2244029e
+4	120	1770993653619790997	CMakeFiles/template.elf.dir/devices/MCX/MCXA/MCXA153/gcc/startup_MCXA153.S.obj	a92ceb0ca92bc126
+5	235	1770993653620791004	CMakeFiles/template.elf.dir/components/misc_utilities/fsl_sbrk.c.obj	454baf2d7ed713d5
+4	243	1770993653619790997	CMakeFiles/template.elf.dir/components/misc_utilities/fsl_syscall_stub.c.obj	57072ac2bf0920b0
+120	250	1770993653735791775	CMakeFiles/template.elf.dir/src/myheader.c.obj	d0ab1d40a25dbe40
+236	352	1770993653851792553	CMakeFiles/template.elf.dir/src/mymain.c.obj	bdef992437087724
+6	381	1770993653621791010	CMakeFiles/template.elf.dir/examples/_boards/frdmmcxa153/ese_common/leds/leds.c.obj	b82bb0d065473b8e
+7	390	1770993653622791017	CMakeFiles/template.elf.dir/examples/_boards/frdmmcxa153/ese_common/switches/switches.c.obj	c0056cf5f41917bd
+3	404	1770993653618790990	CMakeFiles/template.elf.dir/devices/MCX/MCXA/MCXA153/system_MCXA153.c.obj	92cd49ba55aad2f9
+7	452	1770993653622791017	CMakeFiles/template.elf.dir/examples/_boards/frdmmcxa153/ese_common/serial/serial.c.obj	e4611cc69cdb4c17
+12	485	1770993653627791050	CMakeFiles/template.elf.dir/examples/ese_examples/general/template/main.c.obj	f3397651548506d9
+59	501	1770993653674791366	CMakeFiles/template.elf.dir/examples/ese_common/fifo/fifo.c.obj	a5f50a89fdd2a801
+10	505	1770993653625791037	CMakeFiles/template.elf.dir/examples/_boards/frdmmcxa153/ese_common/serial/retarget.c.obj	46fb8786f605153
+505	566	1770993654120794357	template.elf	e404049c3667a625

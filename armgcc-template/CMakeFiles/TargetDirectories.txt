@@ -1,0 +1,3 @@
+/home/school/Beacons-project-HAN/template/CMakeFiles/template.elf.dir
+/home/school/Beacons-project-HAN/template/CMakeFiles/edit_cache.dir
+/home/school/Beacons-project-HAN/template/CMakeFiles/rebuild_cache.dir

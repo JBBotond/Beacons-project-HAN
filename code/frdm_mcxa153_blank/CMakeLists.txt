@@ -13,7 +13,7 @@ include(${SdkRootDirPath}/CMakeLists.txt)
 
 
 mcux_add_source(
-    SOURCES led_blinky.c
+    SOURCES led_blinky.cpp
 )
 include(${SdkRootDirPath}/${board_root}/${board}/demo_apps/led_blinky/reconfig.cmake OPTIONAL)
 

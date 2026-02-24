@@ -17,6 +17,8 @@ what is the distance between beacons
 
 will the doors between the beacons be held open on the day.
 
+witch metal structures could interfere ble (bluetooth low energy) signal inside the building (are there any metal structures that would block the path between 2 beacons)
+
 ## goals:
 
 take pictures and map out the building

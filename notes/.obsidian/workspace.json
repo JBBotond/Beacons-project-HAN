@@ -34,9 +34,23 @@
               "icon": "lucide-file",
               "title": "Software architecture"
             }
+          },
+          {
+            "id": "b12c079685eae11b",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Meeting 25-02-2026.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Meeting 25-02-2026"
+            }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -198,9 +212,10 @@
       "bases:Create new base": false
     }
   },
-  "active": "81317f44c2631243",
+  "active": "b12c079685eae11b",
   "lastOpenFiles": [
-    "Notes.md",
-    "Software architecture.md"
+    "Software architecture.md",
+    "Meeting 25-02-2026.md",
+    "Notes.md"
   ]
 }

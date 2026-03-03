@@ -42,20 +42,25 @@ the group size of kids that will be using our box is 2-3, and its expected that 
 
 **A:** question not applicable, they want the children to learn about the development flow of a product and our box to guide them trough the process with puzzles to gamify the process.
 these puzzles can be themed after machines, the current step, or a different theme of our choice. additionally we are allowed to request external resources to be placed at each point in witch they will stop 
-
-
+___
 **Q:** have the kids we are designing the box for been here before.
 and have these kids used one of these boxes before
+
 **A:** the kids have not used a puzzle box yet but they have been at the company before 
-
+___
 **Q:** what is the distance between beacons
+
 **A:** the beacons have not been set yet and will be set up in discussion with all project groups
-
+___
 **Q:** will the doors between the beacons be held open on the day.
+
 **A:** the doors are automatic when there are doors, tough the company has very few doors and they will likely not be held open.
-
+___
 **Q:** is there a size constraint for the box, like around what dimensions would you preferer
-**A:** question deemed unnecessary, its for kids so previous estimates of 15cm x 30 x 20 will do.
 
+**A:** question deemed unnecessary, its for kids so previous estimates of 15cm x 30 x 20 will do.
+___
 **Q:** witch metal structures could interfere ble (Bluetooth low energy) signal inside the building (are there any metal structures that would block the path between 2 beacons)
+
 **A:** there are few metal structures that would need to be navigated around.
+___

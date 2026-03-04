@@ -1,0 +1,18 @@
+How can Bronkhorst spark 8-12 y/o childrens interest in the fabrication process of their valves with an interactive puzzle box?
+- age, interest, product
+	- how, why, what
+- main question determines report
+- main question can also be a statement
+
+Main research question?
+	- how do we do this?
+
+Others:
+	How can we make a programmable puzzle box that gives tours around a pre-defined building for ages 8 and above, with internal and external data storage with an accompanying pc application?
+	- mention both project goal and company goal
+	Design, manifacture and testing process for a reverse geocache ibeacon puzzle box that supports multiple configurations while maintaining a user-friendly interface suitable for primary school children.
+	- one word can change the whole goal
+- goal determines deliverables
+- different ways to write down goal
+- make it clear so members have the same understanding of the project
+*don't write what you don't understand*

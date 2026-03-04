@@ -41,12 +41,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Meeting 25-02-2026.md",
+                "file": "Software architecture.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Meeting 25-02-2026"
+              "title": "Software architecture"
             }
           }
         ],
@@ -214,8 +214,8 @@
   },
   "active": "b12c079685eae11b",
   "lastOpenFiles": [
-    "Software architecture.md",
     "Meeting 25-02-2026.md",
+    "Software architecture.md",
     "Notes.md"
   ]
 }

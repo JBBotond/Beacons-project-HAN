@@ -1,3 +1,11 @@
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+//debug functions
+void led_init(void);
+void led_green_on(void);
+void led_red_on(void);
+
 enum box_state {
     BOX_INIT_STATE,
     BOX_SELECT_MODE,
@@ -33,10 +41,6 @@ enum box_mode {
     ADMIN
 };
 
-//debug functions
-void led_init(void);
-void led_red_on(void);
-
 //state functions
 void box_init(void);
 void box_select_mode(int *mode);
@@ -65,3 +69,5 @@ void e_all_ibeacons_found(void);
 void e_draw_distance(void);
 
 extern int BOX_CURRENT_STATE;
+
+#endif

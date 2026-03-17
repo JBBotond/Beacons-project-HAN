@@ -4,9 +4,11 @@
 
 void init_motors(void);
 void init_button(void);
-bool button_pressed(void);
+bool buttonA_pressed(void);
+bool buttonB_pressed(void);
 
-volatile int button_count = 0;
+volatile int buttonA_count = 0;
+volatile int buttonB_count = 0;
 
 //debug functions
 void led_init(void) {
@@ -17,14 +19,23 @@ void led_init(void) {
     MRCC0->MRCC_GLB_RST1_SET = MRCC_MRCC_GLB_RST1_GPIO3(1);
 
     PORT3->PCR[12] = PORT_PCR_LK(1);
+    PORT3->PCR[12] = PORT_PCR_LK(1);
+    
+    GPIO3->PSOR |= (1<<12);
+    GPIO3->PSOR |= (1<<13);
 
-    GPIO3->PDOR |= (1<<12);
     GPIO3->PDDR |= (1<<12);
+    GPIO3->PDDR |= (1<<13);
+
+}
+void led_green_on(void) {
+    GPIO3->PCOR = (1<<13);
 }
 void led_red_on(void)
 {
     GPIO3->PCOR = (1<<12);
 }
+
 
 void box_init(void) {
     //initialize gpio
@@ -34,10 +45,11 @@ void box_init(void) {
 
 //state functions
 void box_select_mode(int *mode) {
-    //code for mode selection goes here
-    //    debug: switch will set game mode
-    if(button_pressed()) {
+    if(buttonA_pressed()) {
         *mode = GAME;
+    }
+    if(buttonB_pressed()) {
+        *mode = ADMIN;
     }
 }
 void box_shutdown(void) {}
@@ -108,17 +120,24 @@ void init_button(void) {
     PORT1->PCR[7] = PORT_PCR_MUX(0) | PORT_PCR_IBE(1);
     GPIO1->ICR[7] = GPIO_ICR_ISF(1) | GPIO_ICR_IRQC(0b1010);
 
+    PORT3->PCR[29] = PORT_PCR_MUX(0) | PORT_PCR_IBE(1);
+    GPIO3->ICR[29] = GPIO_ICR_ISF(1) | GPIO_ICR_IRQC(0b1010);
+
     NVIC_SetPriority(GPIO1_IRQn, 3);
     NVIC_ClearPendingIRQ(GPIO1_IRQn);
     NVIC_EnableIRQ(GPIO1_IRQn);
 
+    NVIC_SetPriority(GPIO3_IRQn, 3);
+    NVIC_ClearPendingIRQ(GPIO3_IRQn);
+    NVIC_EnableIRQ(GPIO3_IRQn);
+
     __enable_irq();
 }
 
-bool button_pressed(void) {
-    if(button_count > 0) {
+bool buttonA_pressed(void) {
+    if(buttonA_count > 0) {
 
-        button_count --;
+        buttonA_count --;
         
         return true;
     }
@@ -126,6 +145,16 @@ bool button_pressed(void) {
     return false;
 }
 
+bool buttonB_pressed(void) {
+    if(buttonB_count > 0) {
+
+        buttonB_count --;
+        
+        return true;
+    }
+    
+    return false;
+}
 
 void GPIO1_IRQHandler(void) {
     NVIC_ClearPendingIRQ(GPIO1_IRQn);
@@ -134,8 +163,17 @@ void GPIO1_IRQHandler(void) {
 
         GPIO1->ISFR[0] = GPIO_ISFR_ISF7(1);
 
-        button_count++;
+        buttonA_count++;
     }
 }
 void GPIO2_IRQHandler(void) {}
-void GPIO3_IRQHandler(void) {}
+void GPIO3_IRQHandler(void) {
+    NVIC_ClearPendingIRQ(GPIO3_IRQn);
+
+    if((GPIO3->ISFR[0] & GPIO_ISFR_ISF29(1)) != 0) {
+
+        GPIO3->ISFR[0] = GPIO_ISFR_ISF29(1);
+
+        buttonB_count++;
+    }
+}

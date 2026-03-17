@@ -31,10 +31,14 @@ int main(void)
         if(BOX_CURRENT_STATE == BOX_SELECT_MODE) {
             box_select_mode(&BOX_MODE);
 
-            if(BOX_MODE == GAME) {
-                led_red_on();
+            switch(BOX_MODE) {
+                case GAME:
+                    led_red_on();
+                break;
+                case ADMIN:
+                    led_green_on();
+                break;
             }
         }
     }
 }
-

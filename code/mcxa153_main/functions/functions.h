@@ -1,6 +1,3 @@
-#ifndef FUNCTIONS_H
-#define FUNCTIONS_H
-
 //debug functions
 void led_init(void);
 void led_green_on(void);
@@ -69,5 +66,3 @@ void e_all_ibeacons_found(void);
 void e_draw_distance(void);
 
 extern int BOX_CURRENT_STATE;
-
-#endif

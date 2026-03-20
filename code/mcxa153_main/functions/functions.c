@@ -1,7 +1,7 @@
-#include "board.h"
-#include "app.h"
+//#include "board.h"
 #include "functions.h"
 #include <stdio.h>
+#include <stdbool.h>
 
 void init_motors(void);
 void init_button(void);
@@ -50,13 +50,13 @@ void box_init(void) {
 void box_select_mode(int *mode) {
     if(buttonA_pressed()) {
         *mode = GAME;
+        printf("Game mode selected! \r\n");
     }
     else if(buttonB_pressed()) {
         *mode = ADMIN;
+        printf("Admin mode selected! \r\n");
     }
-    else *mode = NONE;
 
-    printf("Mode selected! \r\n");
 }
 void box_shutdown(void) {}
 void box_game_mode_init(void) {
@@ -208,7 +208,7 @@ void GPIO1_IRQHandler(void) {
         GPIO1->ISFR[0] = GPIO_ISFR_ISF7(1);
 
         buttonA_count++;
-        printf("Button A is pressed");
+        printf("Button A is pressed \r\n");
     }
 }
 void GPIO2_IRQHandler(void) {}
@@ -220,6 +220,6 @@ void GPIO3_IRQHandler(void) {
         GPIO3->ISFR[0] = GPIO_ISFR_ISF29(1);
 
         buttonB_count++;
-        printf("Button B is pressed");
+        printf("Button B is pressed \r\n");
     }
 }

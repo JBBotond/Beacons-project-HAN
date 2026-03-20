@@ -1,6 +1,7 @@
 #include "board.h"
 #include "app.h"
 #include "functions.h"
+#include <stdio.h>
 
 void init_motors(void);
 void init_button(void);
@@ -41,6 +42,8 @@ void box_init(void) {
     //initialize gpio
     init_motors();
     init_button();
+
+    printf("Motors + but initialized! \r\n");
 }
 
 //state functions
@@ -48,15 +51,39 @@ void box_select_mode(int *mode) {
     if(buttonA_pressed()) {
         *mode = GAME;
     }
-    if(buttonB_pressed()) {
+    else if(buttonB_pressed()) {
         *mode = ADMIN;
     }
+    else *mode = NONE;
+
+    printf("Mode selected! \r\n");
 }
 void box_shutdown(void) {}
-void box_game_mode(void) {}
-void box_admin_mode(void) {}
+void box_game_mode_init(void) {
+    // initialize everything needed for game to run correctly
+
+    //start the main game loop here
+
+    printf("Game mode is initialized \r\n");
+
+
+}
+void box_admin_mode_init(void) {}
 void box_debug_mode(void) {}
-void box_game_scan(void) {}
+
+//  void for now, BOOL LATER!!
+void box_game_scan(void) {
+    //  scanning code by Danyil
+    //  UUID-s in global buffer
+
+    // ibeacon scan returns number of ibeacons
+    /*
+    if(ibeacon_scan() > 0)
+        return true;
+    return false;
+    */
+    printf("Begin ibeacon scan \r\n");
+}
 void box_display_distance(void) {}
 void box_game_hints(void) {}
 void box_game_final(void) {}
@@ -65,18 +92,35 @@ void box_admin_connect(void) {}
 
 //event functions
 void e_init_done(void) {
-    BOX_CURRENT_STATE = BOX_SELECT_MODE;
+
+    printf("Initial state exited \r\n");
 }
-void e_shutdown(void) {}
-void e_enter_game(void) {}
-void e_enter_admin(void) {}
-void e_start_scan(void) {}
+void e_enter_game(void) {
+    //  prepare everything needed for game mode here
+
+    printf("Entering game mode \r\n");
+}
+void e_enter_admin(void) {
+    //  prepare admin mode
+
+    printf("Entering admin mode \r\n");
+}
+void e_start_scan(void) {
+    //  prepare system for BLE scan and data storage
+
+    printf("Preparing for BLE scan \r\n");
+}
 void e_admin_local(void) {}
 void e_admin_pc(void) {}
 void e_next_ibeacon(void) {}
 void e_ibeacon_found(void) {}
 void e_all_ibeacons_found(void) {}
-void e_draw_distance(void) {}
+void e_draw_distance(void) {
+    //  convert raw ibeacon data to actual distances here
+
+    printf("Distances calculated! \r\n");
+}
+void e_shutdown(void) {}
 
 void init_motors(void) {
     //initialize motors pins:
@@ -164,6 +208,7 @@ void GPIO1_IRQHandler(void) {
         GPIO1->ISFR[0] = GPIO_ISFR_ISF7(1);
 
         buttonA_count++;
+        printf("Button A is pressed");
     }
 }
 void GPIO2_IRQHandler(void) {}
@@ -175,5 +220,6 @@ void GPIO3_IRQHandler(void) {
         GPIO3->ISFR[0] = GPIO_ISFR_ISF29(1);
 
         buttonB_count++;
+        printf("Button B is pressed");
     }
 }

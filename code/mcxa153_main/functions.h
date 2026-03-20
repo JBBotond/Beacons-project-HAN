@@ -10,8 +10,8 @@ enum box_state {
     BOX_INIT_STATE,
     BOX_SELECT_MODE,
     BOX_SHUTDOWN,
-    BOX_GAME_MODE,
-    BOX_ADMIN_MODE,
+    BOX_GAME_MODE_INIT,
+    BOX_ADMIN_MODE_INIT,
     BOX_DEBUG_MODE,
     BOX_GAME_SCAN,
     BOX_DISPLAY_DISTANCE,
@@ -45,8 +45,8 @@ enum box_mode {
 void box_init(void);
 void box_select_mode(int *mode);
 void box_shutdown(void);
-void box_game_mode(void);
-void box_admin_mode(void);
+void box_game_mode_init(void);
+void box_admin_mode_init(void);
 void box_debug_mode(void);
 void box_game_scan(void);
 void box_display_distance(void);

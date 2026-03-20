@@ -1,3 +1,5 @@
+#include <stdbool.h>
+
 //debug functions
 void led_init(void);
 void led_green_on(void);
@@ -45,7 +47,7 @@ void box_shutdown(void);
 void box_game_mode_init(void);
 void box_admin_mode_init(void);
 void box_debug_mode(void);
-void box_game_scan(void);
+bool box_game_scan(void);
 void box_display_distance(void);
 void box_game_hints(void);
 void box_game_final(void);

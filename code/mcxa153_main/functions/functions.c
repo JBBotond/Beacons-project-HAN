@@ -1,7 +1,7 @@
 #include "board.h"
-#include "app.h"
 #include "functions.h"
 #include <stdio.h>
+#include <stdbool.h>
 
 void init_motors(void);
 void init_button(void);
@@ -50,13 +50,13 @@ void box_init(void) {
 void box_select_mode(int *mode) {
     if(buttonA_pressed()) {
         *mode = GAME;
+        printf("Game mode selected! \r\n");
     }
     else if(buttonB_pressed()) {
         *mode = ADMIN;
+        printf("Admin mode selected! \r\n");
     }
-    else *mode = NONE;
 
-    printf("Mode selected! \r\n");
 }
 void box_shutdown(void) {}
 void box_game_mode_init(void) {
@@ -72,7 +72,8 @@ void box_admin_mode_init(void) {}
 void box_debug_mode(void) {}
 
 //  void for now, BOOL LATER!!
-void box_game_scan(void) {
+bool box_game_scan(void) {
+    printf("Scanning for ibeacons...");
     //  scanning code by Danyil
     //  UUID-s in global buffer
 
@@ -82,11 +83,21 @@ void box_game_scan(void) {
         return true;
     return false;
     */
-    printf("Begin ibeacon scan \r\n");
+   return false;
 }
-void box_display_distance(void) {}
-void box_game_hints(void) {}
-void box_game_final(void) {}
+void box_display_distance(void) {
+    //  display game element goes here
+
+    printf("Display:      __...... 0 m \r\n");
+}
+void box_game_hints(void) {
+    printf("Found!. Locating next ibeacon... \r\n");
+
+
+}
+void box_game_final(void) {
+    printf("All ibeacons found. Unlocking box! /r/n");
+}
 void box_admin_settings(void) {}
 void box_admin_connect(void) {}
 
@@ -112,15 +123,46 @@ void e_start_scan(void) {
 }
 void e_admin_local(void) {}
 void e_admin_pc(void) {}
-void e_next_ibeacon(void) {}
-void e_ibeacon_found(void) {}
-void e_all_ibeacons_found(void) {}
+void e_next_ibeacon(void) {
+    //  set flag for ibeacon being found and select next ibeacon
+
+    printf("Next ibeacon selected by game \r\n");
+}
+bool e_ibeacon_found(int distance, const int treshold) {
+    //  returns whether the player has gotten close enough to the ibeacon
+    if(distance <= treshold) {
+        printf("Player close enough, ibeacon collected \r\n");
+        return true;
+    }
+    else {
+        printf("Not close enough to any ibeacons! \r\n");
+        return false;
+    }
+}
+bool e_all_ibeacons_found(void) {
+    //  return true if all ibeacons have been found
+    if(1 == 1)
+        return true;
+    else return false;
+
+}
 void e_draw_distance(void) {
     //  convert raw ibeacon data to actual distances here
+    //  prepare data for display
 
-    printf("Distances calculated! \r\n");
+    //  distance can be parsed as pointer from main !
+    
+    printf("Distances calculated! Note: only calculate if necessary \r\n");
+    printf("Nearest ibeacon: 0 m \r\n");
 }
 void e_shutdown(void) {}
+void e_game_over(void) {
+    //  reset everything, prepare to return to init_state
+
+    printf("Session over. Reseting to select mode screen... \r\n");
+}
+
+//  init functions
 
 void init_motors(void) {
     //initialize motors pins:
@@ -208,7 +250,7 @@ void GPIO1_IRQHandler(void) {
         GPIO1->ISFR[0] = GPIO_ISFR_ISF7(1);
 
         buttonA_count++;
-        printf("Button A is pressed");
+        printf("Button A is pressed \r\n");
     }
 }
 void GPIO2_IRQHandler(void) {}
@@ -220,6 +262,6 @@ void GPIO3_IRQHandler(void) {
         GPIO3->ISFR[0] = GPIO_ISFR_ISF29(1);
 
         buttonB_count++;
-        printf("Button B is pressed");
+        printf("Button B is pressed \r\n");
     }
 }

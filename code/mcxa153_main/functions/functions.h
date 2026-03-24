@@ -63,8 +63,10 @@ void e_start_scan(void);
 void e_admin_local(void);
 void e_admin_pc(void);
 void e_next_ibeacon(void);
-void e_ibeacon_found(void);
-void e_all_ibeacons_found(void);
+bool e_ibeacon_found(int distance, const int treshold);
+bool e_all_ibeacons_found(void);
 void e_draw_distance(void);
+
+void e_game_over(void);
 
 extern int BOX_CURRENT_STATE;

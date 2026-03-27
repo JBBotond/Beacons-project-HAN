@@ -1,0 +1,3 @@
+/home/school/ese_examples/ese_examples_standalone/general/serial2lpuart-buffered/CMakeFiles/template.elf.dir
+/home/school/ese_examples/ese_examples_standalone/general/serial2lpuart-buffered/CMakeFiles/edit_cache.dir
+/home/school/ese_examples/ese_examples_standalone/general/serial2lpuart-buffered/CMakeFiles/rebuild_cache.dir

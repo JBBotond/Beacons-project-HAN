@@ -1,0 +1,53 @@
+echo -n "OK+DISC:4C000215" | wc -m
+16
+
+echo -n "74278BDAB64445208F0C720EAF059935" |wc -m
+32
+
+echo -n "0AEA0032C5" | wc -m
+10
+
+echo -n "685E1C1A5341" | wc -m
+12
+
+echo -n "-098" | wc -m
+4
+
+OK+DISC + factoryID = 16bytes
+iBeaconUUID = 32bytes
+MajorValue+MeasuredPower = 10bytes
+MAC = 12bytes
+RSSI = 4bytes
+
+Memory required = 74+1bytes(excluding ':', \n and \r characters)
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+OK+DISC:4C000215:74278BDAB64445208F0C720EAF059935:0AEA0026C5:685E1C1A68F3:-073\n\r
+
+printf "OK+DISC:4C000215:74278BDAB64445208F0C720EAF059935:0AEA0026C5:685E1C1A68F3:-073\n\r"  | wc -m
+80
+
+printf "OK+DISC:" | wc -m
+8
+
+printf "4C000215:" | wc -m
+9
+
+printf "74278BDAB64445208F0C720EAF059935:" | wc -m
+33
+
+printf "0AEA0026C5:" | wc -m
+11
+
+printf "685E1C1A68F3:" | wc -m
+13
+
+printf "-073\n\r" | wc -m
+6
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+printf "OK+DISIS\n\r" | wc -m //same for OK+DISCE
+10
+
+For 30 lines we will need 30*80+20+1 =  2421bytes

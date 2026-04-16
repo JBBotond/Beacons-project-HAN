@@ -36,7 +36,13 @@ void led_red_on(void)
 {
     GPIO3->PCOR = (1<<12);
 }
-
+void led_green_off(void) {
+    GPIO3->PSOR = (1<<13);
+}
+void led_red_off(void)
+{
+    GPIO3->PSOR = (1<<12);
+}
 
 void box_init(void) {
     //initialize gpio
@@ -74,16 +80,15 @@ void box_debug_mode(void) {}
 //  void for now, BOOL LATER!!
 bool box_game_scan(void) {
     printf("Scanning for ibeacons...");
+    int beacon_cnt = 0;
     //  scanning code by Danyil
     //  UUID-s in global buffer
 
     // ibeacon scan returns number of ibeacons
-    /*
-    if(ibeacon_scan() > 0)
+    
+    if(beacon_cnt > 0)
         return true;
     return false;
-    */
-   return false;
 }
 void box_display_distance(void) {
     //  display game element goes here
@@ -158,6 +163,10 @@ void e_draw_distance(void) {
 void e_shutdown(void) {}
 void e_game_over(void) {
     //  reset everything, prepare to return to init_state
+    led_red_off();
+    led_green_off();
+
+    BOX_MODE = NONE;
 
     printf("Session over. Reseting to select mode screen... \r\n");
 }
@@ -265,3 +274,4 @@ void GPIO3_IRQHandler(void) {
         printf("Button B is pressed \r\n");
     }
 }
+

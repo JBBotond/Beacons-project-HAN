@@ -4,6 +4,8 @@
 void led_init(void);
 void led_green_on(void);
 void led_red_on(void);
+void led_green_off(void);
+void led_red_off(void);
 
 enum box_state {
     BOX_INIT_STATE,
@@ -70,3 +72,5 @@ void e_draw_distance(void);
 void e_game_over(void);
 
 extern int BOX_CURRENT_STATE;
+extern int BOX_MODE;
+

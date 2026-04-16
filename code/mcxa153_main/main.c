@@ -3,6 +3,8 @@
 
 #include "serial.h"
 #include "functions/functions.h"
+#include "libeacon/libeacon.h"
+#include "libeacon/lpuart2.h"
 
 // -----------------------------------------------------------------------------
 // Local type definitions
@@ -25,6 +27,7 @@ int BOX_CURRENT_STATE = BOX_INIT_STATE;
 int BOX_MODE = NONE;
 
 int distanceToBeacon = 0;
+//  remove const
 const int treshold = 10;
 // -----------------------------------------------------------------------------
 // Main application
@@ -56,6 +59,9 @@ int main(void)
                     }
                     else if (BOX_MODE == ADMIN) {
                         led_green_on();
+
+                        printf("Admin mode not implemented yet, freezing program! \r\n");
+                        while(1) {}
                     }
                 }
 
@@ -113,3 +119,4 @@ int main(void)
 // -----------------------------------------------------------------------------
 // Local function implementation
 // -----------------------------------------------------------------------------
+

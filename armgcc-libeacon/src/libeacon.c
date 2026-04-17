@@ -3,6 +3,13 @@
 #include <string.h>
 
 #include <libeacon.h>
+static inline char *FACTORYUUIDin(char *strptr);
+static inline char *UUIDin(char *strptr);
+static inline char *MAJORin(char *strptr);
+static inline char *MINORin(char *strptr);
+static inline char *MPin(char *strptr);
+static inline char *MACin(char *strptr);
+static inline char *RSSIin(char *strptr);
 
 //OK+DISC:4C000215:74278BDAB64445208F0C720EAF059935:0AEA0026C5:685E1C1A68F3:-063
 //OK+DISC:4C000215:74278BDAB64445208F0C720EAF059935:0AEA0037C5:685E1C1A5F78:-066
@@ -23,41 +30,12 @@ char ibeacon_target_rssi_str[5] = "0000";
 
 
 char ibeacon_major_minor_list_str[IBEACONS_LIST_SIZE*8+1];
-
 void nprintf(char *str, uint32_t size)
 {
 	uint32_t i = 0;
 	while (str[i] && i < size)
 		printf("%c", str[i++]);
 	printf("\n");
-}
-char *FACTORYUUIDin(char *strptr)
-{
-	return (strptr+8);
-}
-char *UUIDin(char *strptr)
-{
-	return (strptr+17);
-}
-char *MAJORin(char *strptr)
-{
-	return (strptr+50);
-}
-char *MINORin(char *strptr)
-{
-	return (strptr+54);
-}
-char *MPin(char *strptr)
-{
-	return (strptr+58);
-}
-char *MACin(char *strptr)
-{
-	return (strptr+61);
-}
-char *RSSIin(char *strptr)
-{
-	return (strptr+74);
 }
 void ibeacon_init()
 {
@@ -67,12 +45,11 @@ void ibeacon_init()
 	//this is a placeholder
 	strncpy(ibeacon_target_factoryid_str,	_IBEACON_TARGET_FACTORYID,	_FACTORYUUIDsize);
 	strncpy(ibeacon_target_ibeaconuuid_str,	_IBEACON_TARGET_UUID,		_UUIDsize);
-	strncpy(ibeacon_target_major_str,		_IBEACON_TARGET_MAJOR,		_MACsize);
+	strncpy(ibeacon_target_major_str,		_IBEACON_TARGET_MAJOR,		_MAJORsize);
 	strncpy(ibeacon_target_minor_str,		_IBEACON_TARGET_MINOR,		_MINORsize);
 	strncpy(ibeacon_target_mp_str,			_IBEACON_TARGET_MP,			_MPsize);
 	strncpy(ibeacon_target_mac_str,			_IBEACON_TARGET_MAC,		_MACsize);
 	strncpy(ibeacon_target_rssi_str,		_IBEACON_TARGET_RSSI,		_RSSIsize);
-
 }
 char *ibeacon_find_first_uuid_in_str(char *str)
 {

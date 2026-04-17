@@ -11,13 +11,13 @@
 #define ATCOMMANDSUCCESS "OK+DISCE\r\n"
 //#define _IBEACON_TARGET_FACTORYID "4C000215"
 //#define _IBEACON_TARGET_UUID "74278BDAB64445208F0C720EAF059935"
-#define _IBEACON_TARGET_FACTORYID "00000000"
-#define _IBEACON_TARGET_UUID "00000000000000000000000000000000"
-#define _IBEACON_TARGET_MAJOR "0000"
-#define _IBEACON_TARGET_MINOR "0000"
-#define _IBEACON_TARGET_MP "00"
-#define _IBEACON_TARGET_MAC "000000000000"
-#define _IBEACON_TARGET_RSSI "-000"
+#define _IBEACON_TARGET_FACTORYID "10000000"
+#define _IBEACON_TARGET_UUID "10000000000000000000000000000000"
+#define _IBEACON_TARGET_MAJOR "1000"
+#define _IBEACON_TARGET_MINOR "1000"
+#define _IBEACON_TARGET_MP "10"
+#define _IBEACON_TARGET_MAC "100000000000"
+#define _IBEACON_TARGET_RSSI "-100"
 
 #define _FACTORYUUIDsize (8)
 #define _UUIDsize (32)
@@ -43,12 +43,33 @@ void ibeacon_parse_rssi(char *strptr, uint32_t size);
 uint32_t ibeacon_ATDISI();
 
 //internal helper functions
-char *FACTORYUUIDin(char *strptr);
-char *UUIDin(char *strptr);
-char *MAJORin(char *strptr);
-char *MINORin(char *strptr);
-char *MPin(char *strptr);
-char *MACin(char *strptr);
-char *RSSIin(char *strptr);
 
+static inline char *FACTORYUUIDin(char *strptr)
+{
+	return (strptr+8);
+}
+static inline char *UUIDin(char *strptr)
+{
+	return (strptr+17);
+}
+static inline char *MAJORin(char *strptr)
+{
+	return (strptr+50);
+}
+static inline char *MINORin(char *strptr)
+{
+	return (strptr+54);
+}
+static inline char *MPin(char *strptr)
+{
+	return (strptr+58);
+}
+static inline char *MACin(char *strptr)
+{
+	return (strptr+61);
+}
+static inline char *RSSIin(char *strptr)
+{
+	return (strptr+74);
+}
 #endif

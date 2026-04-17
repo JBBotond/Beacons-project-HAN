@@ -91,6 +91,16 @@ extern char ibeacon_target_uuid_str[_UUIDsize+1];
 
 extern char ibeacon_major_minor_list_str[IBEACONS_LIST_SIZE*8+1];
 
+void ibeacon_send_AT_command(char *atcommand)
+{
+	uint32_t i = 0;
+	while (*atcommand)
+	{
+		lpuart2_putchar(*atcommand++);
+		i++;
+	}
+	atbufferoneIndex = i;
+}
 int main(void)
 {
     serial_init(115200);
@@ -103,6 +113,7 @@ int main(void)
 	hexdump(ibeacon_target_factoryid_str, 17, "hexdump after ibeacon_init()\n");
 	printf("ibeacon_target_factoryid_str = \"%s\"\n", ibeacon_target_factoryid_str);
 
+ibeacon_send_AT_command("AT+DISI?\r\n");
     while(1)
     {
         // Data available from serial?

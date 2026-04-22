@@ -3,7 +3,7 @@
 - this motor was initially used for prototyping the locking mechanism, but was switched out for simple DC motors due to temperature problems, as stepper motors tend to get very hot (70 - 100 degrees celsius) during operation
 - DC motors don't require us to think about hot components
 
-DC motor with HW-095 H-bridge
+DC motor with HW-095 H-bridge - replaced
  - the motor doesn't have heating issues, H-bridge has a lower operating temperature of around 25-75 degrees celsius
  - the group is familiar with the components already, so it is to our advantage choosing to use it for the locking mechanism
  - simple drivers
@@ -14,3 +14,7 @@ hw-140 V3.2.0 buck boost converter
 ili9341 2.8 inch tft display 240x320
 - display with touchscreen capabilities and spi driver support provided in the mcu sdk
 - optional sd card
+JF-0530B push-pull solenoid
+- less complexity than motors for locking, simple HIGH/LOW signal control
+- must connect to MCU through a relay
+- 12V operating voltage

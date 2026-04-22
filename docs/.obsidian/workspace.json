@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "b6e185e3d146ee95",
+        "id": "4ec6a228eb53e582",
         "type": "tabs",
         "children": [
           {
-            "id": "cda47e2f95bd5b2a",
+            "id": "2bdb1f4b144180d1",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -94,7 +94,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Components used.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +103,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Components used"
+              "title": "Backlinks"
             }
           },
           {
@@ -113,12 +112,11 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Components used.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from Components used"
+              "title": "Outgoing links"
             }
           },
           {
@@ -156,13 +154,12 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Components used.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Components used"
+              "title": "Outline"
             }
           }
         ]
@@ -183,10 +180,10 @@
       "bases:Create new base": false
     }
   },
-  "active": "cda47e2f95bd5b2a",
+  "active": "2bdb1f4b144180d1",
   "lastOpenFiles": [
-    "Intro-project-report.md",
     "Components used.md",
+    "Intro-project-report.md",
     "Agenda.md"
   ]
 }

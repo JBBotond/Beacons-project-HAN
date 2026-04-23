@@ -38,5 +38,7 @@ void serial_init(const uint32_t baudrate);
 void serial_putchar(int data);
 int serial_getchar(void);
 uint32_t serial_rxcnt(void);
+void serial_putstr(char str[]);
 
 #endif // SERIAL_H
+

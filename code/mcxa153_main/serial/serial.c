@@ -163,6 +163,11 @@ int serial_getchar(void)
     return (int)c;
 }
 
+void serial_putstr(char str[]) {
+    for(int i = 0; str[i] != '\0'; i++)
+        serial_putchar((int)str[i]);
+}
+
 uint32_t serial_rxcnt(void)
 {
     return f_cnt(&rx);
@@ -207,3 +212,4 @@ void LPUART0_IRQHandler(void)
         }
     }
 }
+

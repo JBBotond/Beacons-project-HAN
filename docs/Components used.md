@@ -18,3 +18,5 @@ JF-0530B push-pull solenoid
 - less complexity than motors for locking, simple HIGH/LOW signal control
 - must connect to MCU through a relay
 - 12V operating voltage
+JQC-3FF-S-Z relay
+- used to separate the solenoid from the rest of the circuit and the mcu

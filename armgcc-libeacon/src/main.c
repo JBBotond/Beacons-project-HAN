@@ -89,7 +89,8 @@ extern volatile uint32_t atbufferoneIndex;
 extern char ibeacon_target_factoryid_str[_FACTORYUUIDsize+1];
 extern char ibeacon_target_uuid_str[_UUIDsize+1];
 
-extern char ibeacon_major_minor_list_str[IBEACONS_LIST_SIZE*8+1];
+extern char ibeacon_target_majorminor_str[_MAJORsize+_MINORsize+1];
+extern char ibeacon_majorminor_list[IBEACONS_LIST_SIZE*8+1];
 
 void ibeacon_send_AT_command(char *atcommand)
 {
@@ -108,10 +109,10 @@ int main(void)
 
     printf("Serial data forwarder\r\n\r\n%s\r\n", hardware_connection);
 	
-	hexdump(ibeacon_target_factoryid_str, 17, "hexdump before ibeacon_init()\n");
+	hexdump(ibeacon_target_majorminor_str, 8, "hexdump before ibeacon_init()\n");
 	ibeacon_init();
-	hexdump(ibeacon_target_factoryid_str, 17, "hexdump after ibeacon_init()\n");
-	printf("ibeacon_target_factoryid_str = \"%s\"\n", ibeacon_target_factoryid_str);
+	hexdump(ibeacon_target_majorminor_str, 8, "hexdump after ibeacon_init()\n");
+	printf("ibeacon_target_majorminor_str = \"%s\"\n", ibeacon_target_majorminor_str);
 
 ibeacon_send_AT_command("AT+DISI?\r\n");
     while(1)

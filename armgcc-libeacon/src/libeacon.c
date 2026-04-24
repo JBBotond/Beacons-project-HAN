@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <string.h>
+#include <stdlib.h>
 
 #include <libeacon.h>
 static inline char *FACTORYUUIDin(char *strptr);
@@ -28,8 +29,44 @@ char ibeacon_target_mp_str[3] = "00";
 char ibeacon_target_mac_str[13] = "000000000000";
 char ibeacon_target_rssi_str[5] = "0000";
 
+char ibeacon_target_majorminor_str[9] = "00000000";
 
-char ibeacon_major_minor_list_str[IBEACONS_LIST_SIZE*8+1];
+char ibeacon_majorminor_list[IBEACONS_LIST_SIZE][8+1] = {
+"0AEA0037",
+"0AEA0026",
+"0AEA0032",
+"00000000",
+"00000000",
+"00000000",
+"00000000",
+"00000000",
+"00000000",
+"00000000",
+"00000000",
+"00000000",
+"00000000",
+"00000000",
+"00000000" };
+uint32_t majorminor_MATCHED = 0;
+uint32_t rssi_treshold_MATCHED = 0;
+uint32_t target = 0;
+
+void ibeacon_init_next_target(void)
+{
+	if (target >= IBEACONS_LIST_SIZE)
+	{
+		//should not happen
+		printf("target overflow in ibeacon_init_next_target()");
+	}
+	if (majorminor_MATCHED && rssi_treshold_MATCHED)
+	{
+		target++;
+		for (uint32_t i=0; i < _MAJORsize+_MINORsize; i++)
+			ibeacon_target_majorminor_str[i] = ibeacon_majorminor_list[target][i];
+		majorminor_MATCHED = 0;
+		rssi_treshold_MATCHED = 0;
+	}
+}
 void nprintf(char *str, uint32_t size)
 {
 	uint32_t i = 0;
@@ -39,17 +76,21 @@ void nprintf(char *str, uint32_t size)
 }
 void ibeacon_init()
 {
-	//this function is not needed, there should be a function that receives input from admin mode
-	//and initializes ibeacon_major_minor_list_str[] or something like that
-	//
-	//this is a placeholder
-	strncpy(ibeacon_target_factoryid_str,	_IBEACON_TARGET_FACTORYID,	_FACTORYUUIDsize);
-	strncpy(ibeacon_target_ibeaconuuid_str,	_IBEACON_TARGET_UUID,		_UUIDsize);
-	strncpy(ibeacon_target_major_str,		_IBEACON_TARGET_MAJOR,		_MAJORsize);
-	strncpy(ibeacon_target_minor_str,		_IBEACON_TARGET_MINOR,		_MINORsize);
-	strncpy(ibeacon_target_mp_str,			_IBEACON_TARGET_MP,			_MPsize);
-	strncpy(ibeacon_target_mac_str,			_IBEACON_TARGET_MAC,		_MACsize);
-	strncpy(ibeacon_target_rssi_str,		_IBEACON_TARGET_RSSI,		_RSSIsize);
+	//init first major_str
+	for (uint32_t i=0; i < _MAJORsize+_MINORsize; i++)
+		ibeacon_target_majorminor_str[i] = ibeacon_majorminor_list[0][i];
+
+//this function is not needed, there should be a function that receives input from admin mode
+//and initializes ibeacon_majorminor_list[] or something like that
+//
+//this is a placeholder
+//	strncpy(ibeacon_target_factoryid_str,	_IBEACON_TARGET_FACTORYID,	_FACTORYUUIDsize);
+//	strncpy(ibeacon_target_ibeaconuuid_str,	_IBEACON_TARGET_UUID,		_UUIDsize);
+//	strncpy(ibeacon_target_major_str,		_IBEACON_TARGET_MAJOR,		_MAJORsize);
+//	strncpy(ibeacon_target_minor_str,		_IBEACON_TARGET_MINOR,		_MINORsize);
+//	strncpy(ibeacon_target_mp_str,			_IBEACON_TARGET_MP,			_MPsize);
+//	strncpy(ibeacon_target_mac_str,			_IBEACON_TARGET_MAC,		_MACsize);
+//	strncpy(ibeacon_target_rssi_str,		_IBEACON_TARGET_RSSI,		_RSSIsize);
 }
 char *ibeacon_find_first_uuid_in_str(char *str)
 {
@@ -105,7 +146,43 @@ void ibeacon_parse_ibeaconuuid(char *strptr, uint32_t size)
 		printf("cant match ibeaconuuid %s in ibeacon_parse_ibeaconuuid()\n", ibeacon_target_ibeaconuuid_str);
 	printf("exiting ibeacon_parse_ibeaconuuid\n");
 }
-void ibeacon_parse_major(char *strptr, uint32_t size)
+char *ibeacon_parse_majorminor(char *strptr, uint32_t size)
+{
+	char *strptr_backup = strptr;
+	uint32_t i = 0;
+	uint32_t loop = 1;
+	while (loop && i < size)
+	{
+		if (strncmp(MAJORin(strptr), ibeacon_target_majorminor_str, _MAJORsize+_MINORsize))
+		{
+			strptr += 80;
+			i = strptr - strptr_backup;
+		}
+		else
+		{
+		#ifdef DEBUG
+		printf("target=%ld\n", target);
+		printf("Matched majorminor %s in ibeacon_target_majorminor()\n", ibeacon_target_majorminor_str);
+		#endif //DEBUG
+			//do something here
+			majorminor_MATCHED=1;
+		//	ibeacon_init_next_target();
+			loop = 0;
+		}
+	}
+	if (loop)
+	{
+	#ifdef DEBUG
+	printf("cant match majorminor %s in ibeacon_parse_major()\n", ibeacon_target_majorminor_str);
+	printf("target=%ld\n", target);
+	#endif //DEBUG
+		return (NULL);
+	}
+	return (strptr);	//return pointer to string here
+	printf("exiting ibeacon_parse_major\n");
+}
+char *ibeacon_parse_major(char *strptr, uint32_t size)
+//this function will return pointer to whole string so we can get IRSS
 {
 	char *strptr_backup = strptr;
 	uint32_t i = 0;
@@ -120,12 +197,20 @@ void ibeacon_parse_major(char *strptr, uint32_t size)
 		else
 		{
 			//do something here
+			printf("target=%ld\n", target);
 			printf("Matched major %s in ibeacon_target_major_str()\n", ibeacon_target_major_str);
+			majorminor_MATCHED=1;
+			ibeacon_init_next_target();
 			loop = 0;
 		}
 	}
 	if (loop)
+	{
 		printf("cant match major %s in ibeacon_parse_major()\n", ibeacon_target_major_str);
+		printf("target=%ld\n", target);
+		return (NULL);
+	}
+	return (strptr);	//return pointer to string here
 	printf("exiting ibeacon_parse_major\n");
 }
 void ibeacon_parse_minor(char *strptr, uint32_t size)
@@ -251,20 +336,38 @@ uint32_t ibeacon_ATDISI()
 	    if (!strncmp(ATCOMMANDSUCCESS, (char *)(atbufferone+(atbufferoneIndex-10)), 10))
 	    {
 			atbufferone[atbufferoneIndex] = '\0';
-			ibeacon_parse_factoryid(ibeacon_find_first_uuid_in_str(atbufferone), atbufferoneIndex);
-			ibeacon_parse_ibeaconuuid(ibeacon_find_first_uuid_in_str(atbufferone), atbufferoneIndex);
-			ibeacon_parse_major(ibeacon_find_first_uuid_in_str(atbufferone), atbufferoneIndex);
-			ibeacon_parse_minor(ibeacon_find_first_uuid_in_str(atbufferone), atbufferoneIndex);
-			ibeacon_parse_mp(ibeacon_find_first_uuid_in_str(atbufferone), atbufferoneIndex);
-			ibeacon_parse_mac(ibeacon_find_first_uuid_in_str(atbufferone), atbufferoneIndex);
-			ibeacon_parse_rssi(ibeacon_find_first_uuid_in_str(atbufferone), atbufferoneIndex);
+//			ibeacon_parse_factoryid(ibeacon_find_first_uuid_in_str(atbufferone), atbufferoneIndex);
+//			ibeacon_parse_ibeaconuuid(ibeacon_find_first_uuid_in_str(atbufferone), atbufferoneIndex);
+			char *strptr = ibeacon_parse_majorminor(ibeacon_find_first_uuid_in_str(atbufferone), atbufferoneIndex);
+				if (NULL != strptr)
+				{
+				#ifdef DEBUG
+				nprintf(RSSIin(strptr)+1, 4);
+				#endif //DEBUG
+					int32_t rssiInStr = strtol(RSSIin(strptr)+1, NULL, 10);
+					if (rssiInStr > RSSI_TRESHOLD)
+					{
+						printf("distance to next ibeacon(%s) is to big(%ld, %d)\n", ibeacon_target_majorminor_str, rssiInStr, RSSI_TRESHOLD);
+					}
+					else
+					{
+						printf("distance to next ibeacon(%s) is to fine(%ld, %d)\n", ibeacon_target_majorminor_str, rssiInStr, RSSI_TRESHOLD);
+						rssi_treshold_MATCHED=1;
+						ibeacon_init_next_target();
+					}
+				}
+//			ibeacon_parse_minor(ibeacon_find_first_uuid_in_str(atbufferone), atbufferoneIndex);
+//			ibeacon_parse_mp(ibeacon_find_first_uuid_in_str(atbufferone), atbufferoneIndex);
+//			ibeacon_parse_mac(ibeacon_find_first_uuid_in_str(atbufferone), atbufferoneIndex);
+//			ibeacon_parse_rssi(ibeacon_find_first_uuid_in_str(atbufferone), atbufferoneIndex);
 				printf(atbufferone);
 				printf("atbufferoneIndex = %ld\n", atbufferoneIndex);
-//				hexdump(atbufferone, atbufferoneIndex+1);
-			atbufferoneIndex = 0;
+////				hexdump(atbufferone, atbufferoneIndex+1);
 	        //goto parse-ibeacons or exit?
+			atbufferoneIndex = 0;
 	    }
 		return (0);	//should return number of detected ibeacons
+					//really?
 	}
 	else return (0);
 }
